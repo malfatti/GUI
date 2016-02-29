@@ -20,7 +20,7 @@ ifeq ($(CONFIG),Debug)
   CPPFLAGS := $(DEPFLAGS) -D "LINUX=1" -D "DEBUG=1" -D "_DEBUG=1" -D "JUCER_LINUX_MAKE_7346DA2A=1" -I /usr/include -I /usr/include/freetype2 -I ../../JuceLibraryCode
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -g -ggdb -O3
   CXXFLAGS += $(CFLAGS) -export-dynamic -g -pg -std=c++0x
-  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -L/usr/X11R6/lib/ -L/usr/local/include -lGL -lX11 -lXext -lXinerama -lasound -ldl -lfreetype -lpthread -lrt -pg -ldl -lXext -lzmq -lprotobuf -lGLU
+  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -L/usr/X11R6/lib/ -L/usr/local/include -lGL -lX11 -lXext -lXinerama -lasound -ldl -lfreetype -lpthread -lrt -pg -ldl -lXext -lzmq -lGLU
   LDDEPS :=
   RESFLAGS :=  -D "LINUX=1" -D "DEBUG=1" -D "_DEBUG=1" -D "JUCER_LINUX_MAKE_7346DA2A=1" -I /usr/include -I /usr/include/freetype2 -I ../../JuceLibraryCode
   TARGET := open-ephys
@@ -35,7 +35,7 @@ ifeq ($(CONFIG),Release)
   CPPFLAGS := $(DEPFLAGS) -D "LINUX=1" -D "NDEBUG=1" -D "JUCER_LINUX_MAKE_7346DA2A=1" -I /usr/include -I /usr/include/freetype2 -I ../../JuceLibraryCode
   CFLAGS += $(CPPFLAGS) $(TARGET_ARCH) -O3
   CXXFLAGS += $(CFLAGS) -export-dynamic -g -pg -std=c++0x
-  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -L/usr/X11R6/lib/ -lGL -lX11 -lXext -lXinerama -lasound -ldl -lfreetype -lpthread -lrt -pg -ldl -lXext -lzmq -lprotobuf -lGLU
+  LDFLAGS += -L$(BINDIR) -L$(LIBDIR) -L/usr/X11R6/lib/ -lGL -lX11 -lXext -lXinerama -lasound -ldl -lfreetype -lpthread -lrt -pg -ldl -lXext -lzmq -lGLU
   LDDEPS :=
   RESFLAGS :=  -D "LINUX=1" -D "NDEBUG=1" -D "JUCER_LINUX_MAKE_7346DA2A=1" -I /usr/include -I /usr/include/freetype2 -I ../../JuceLibraryCode
   TARGET := open-ephys-release
@@ -71,8 +71,6 @@ OBJECTS := \
   $(OBJDIR)/AdvancerNode_12999801.o \
   $(OBJDIR)/NetworkEvents_28b3b762.o \
   $(OBJDIR)/TrialCircularBuffer_93e57770.o \
-  $(OBJDIR)/NetworkSink_28a35cdc.o \
-  $(OBJDIR)/NetworkSinkProcotol.pb_4af1b0cd.o \
   $(OBJDIR)/SerialInput_855a46b1.o \
   $(OBJDIR)/SpikeSortBoxes_e42a3d04.o \
   $(OBJDIR)/FileReader_18023b0e.o \
@@ -342,16 +340,6 @@ $(OBJDIR)/NetworkEvents_28b3b762.o: ../../Source/Processors/NetworkEvents.cpp
 $(OBJDIR)/TrialCircularBuffer_93e57770.o: ../../Source/Processors/TrialCircularBuffer.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling TrialCircularBuffer.cpp"
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
-$(OBJDIR)/NetworkSink_28a35cdc.o: ../../Source/Processors/NetworkSink.cpp
-	-@mkdir -p $(OBJDIR)
-	@echo "Compiling NetworkSink.cpp"
-	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-
-$(OBJDIR)/NetworkSinkProcotol.pb_4af1b0cd.o: ../../Source/Processors/NetworkSinkProcotol.pb.cc
-	-@mkdir -p $(OBJDIR)
-	@echo "Compiling NetworkSinkProcotol.pb.cc"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/SerialInput_855a46b1.o: ../../Source/Processors/SerialInput.cpp
